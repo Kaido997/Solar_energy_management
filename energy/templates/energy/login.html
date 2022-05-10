@@ -1,0 +1,19 @@
+{% extends 'energy/homepage.html' %}
+
+{% block content %}
+<header>
+    <div class="container">
+        <form method="POST" class="login-post">
+            <div>{% csrf_token %}
+                {{field.errors}}
+                <input type="text" placeholder="Enter Username" name="username" required>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</header>
+<main class="content container">
+    <p><strong>Please log-in</strong></p>
+</main>
+{% endblock %}

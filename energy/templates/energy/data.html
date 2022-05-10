@@ -1,0 +1,39 @@
+{% extends 'energy/homepage.html' %}
+
+{% block content %}
+{% load static %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="infobox">
+        <p><strong>Latest transaction on: <p id="time">{{ last_transaction }}</strong></p> 
+        <p><strong>Next transaction in: <p id="timer"></p></strong></p>
+        <script src="{% static 'countdouwn.js' %}"></script>
+    </div>
+    {% if user.is_staff %}
+    <div class="totals">
+        <p><strong>Total energy produced : {{total_produced}}</strong></p>
+        <p><strong>Total energy consumed : {{total_consumed}}</strong></p>
+    </div>
+    {% endif %} 
+</div>
+<main class="content container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">DATE</th>
+                <th scope="col">PRODUCED ENERGY</th>
+                <th scope="col">CONSUMED ENERGY</th>
+                <th scope="col">TRANSACTION</th>
+            </tr>
+        </thead>
+    {% for i in data %}
+    <tr>
+        <td scope="row">{{ i.time }}</td>
+        <td>{{ i.produced }}</td>
+        <td>{{ i.consumed }}</td>
+        <td>{{ i.transactionID }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+    {% endblock %}
+</main>

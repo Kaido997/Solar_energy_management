@@ -1,0 +1,74 @@
+body{
+    background-color: #cafafe;
+}
+
+.page-header {
+    background-color:#fc4445;
+    margin-top: 0;
+    margin-bottom: 40px;
+    padding: 20px 20px 20px 40px;
+}
+
+.page-header h1,
+.page-header h1 a,
+.page-header h1 a:visited,
+.page-header h1 a:active {
+    color: #cafafe;
+    font-size: 35pt;
+    text-decoration: none;
+    height: 60px;
+}
+
+
+.login-post {
+    top: 2.2em;
+    right: 0.3em;
+    position: absolute;
+    padding-right: 1%;   
+}
+
+button {
+    background-color: #97caef;
+    color:#cafafe;
+    margin: 8px 0;
+    border: 1px solid;
+}
+  
+.bi,
+.bi-file-person{
+    zoom: 2;
+    color:#cafafe;
+    top: 0.1em;
+    right: 1em;
+    position: absolute;
+}
+.name{
+    color:#cafafe;
+    font-size: small;
+    text-transform: uppercase;
+    top: 2.5em;
+    right: 2.5em;
+    position: absolute;
+}
+.logoutlink{
+    color: #3feee6;
+    top: 2em;
+    right: 2em;
+    position: absolute;
+}
+#timer{
+    color:#fc4445;
+    font-weight: bold;
+}
+
+.totals{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
