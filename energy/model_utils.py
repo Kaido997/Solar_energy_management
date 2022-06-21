@@ -9,7 +9,7 @@ def get_data_from_endpoint(endpointurl):
 
 def makeTransaction(values):
     WEB3 = Web3(Web3.HTTPProvider(
-        'https://ropsten.infura.io/v3/cecd52cfb8614b9ba5b06c12167ce00f'))
+        ''))
     nonce = WEB3.eth.getTransactionCount(ADDRESS)
     gasPrice = WEB3.eth.gasPrice
     value = WEB3.toWei(0, 'ether')
