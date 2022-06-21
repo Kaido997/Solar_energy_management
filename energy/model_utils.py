@@ -1,17 +1,13 @@
 import requests
 from web3 import Web3
+from .secret import ADDRESS, KEY
 
-URL = "https://955cf8ae-5a74-4e4d-85d4-e8095a57862a.mock.pstmn.io"
-
-
-def get_data_from_endpoint(URL):
-    s = requests.request("GET", URL)
+def get_data_from_endpoint(endpointurl):
+    s = requests.request("GET", endpointurl)
     return s.json()
 
 
 def makeTransaction(values):
-    ADDRESS = "0x227C6160b14E531c43Be4CB3f7d7dC75a1F6a471"
-    KEY = "0x743d867cee41c4c33d1f98514396d52822034bf7dfc1fe1e30fc671e0850535a"
     WEB3 = Web3(Web3.HTTPProvider(
         'https://ropsten.infura.io/v3/cecd52cfb8614b9ba5b06c12167ce00f'))
     nonce = WEB3.eth.getTransactionCount(ADDRESS)

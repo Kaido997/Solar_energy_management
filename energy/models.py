@@ -1,6 +1,7 @@
 from django.db import models
-from energy.model_utils import makeTransaction, get_data_from_endpoint, URL
+from energy.model_utils import makeTransaction, get_data_from_endpoint
 from django.utils.timezone import now
+from .secret import URL
 
 class Solar_energy(models.Model):
     time = models.DateTimeField(default=now)

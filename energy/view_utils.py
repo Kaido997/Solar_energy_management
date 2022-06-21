@@ -18,7 +18,7 @@ def get_total(type):
 
 
 def check_admin_ip(ip):
-    redisS = redis.Redis(host='localhost', port=6379, db=0)
+    redisS = redis.Redis(host='localhost', port=6379, db=0, charset="utf-8",decode_responses=True)
     check_ip = redisS.get('admin_ip')
     if check_ip is not None:
         if check_ip == ip:
@@ -37,5 +37,5 @@ def get_admin_ip_from(request):
         pass
 
 def set_new_admin_ip(ip):
-    redisS = redis.Redis(host='localhost', port=6379, db=0)
+    redisS = redis.Redis(host='localhost', port=6379, db=0, charset="utf-8",decode_responses=True)
     redisS.set('admin_ip', ip)

@@ -27,7 +27,13 @@ def homepage(request):
                 else:
                     return redirect('secure')
             else:
-                return render(request, 'energy/data.html')
+                try:
+                    data = Solar_energy.objects.order_by('-time')
+                    latest = Solar_energy.objects.latest('time')
+                    return render(request, 'energy/data.html', 
+                    {'data': data, 'last_transaction': latest, 'total_produced': get_total('produced'), 'total_consumed': get_total('consumed')})
+                except:
+                    return render(request, 'energy/data.html')
         else:
             return redirect('homepage')
     else:
@@ -69,7 +75,13 @@ def secure(request):
     if request.method == 'POST':
         ip = request.META['REMOTE_ADDR']
         set_new_admin_ip(ip)
-    return redirect('homepage')
+        return redirect('homepage')
+    else:
+        ip = request.META['REMOTE_ADDR']
+        if request.user.is_authenticated and check_admin_ip(ip):
+            return redirect('homepage')
+        else:
+            return render(request, 'energy/security.html')
         
 
 
