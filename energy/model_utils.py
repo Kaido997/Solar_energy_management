@@ -1,6 +1,6 @@
 import requests
 from web3 import Web3
-from .secret import ADDRESS, KEY
+from energy.secret import ADDRESS, KEY, ROPSTEN
 
 def get_data_from_endpoint(endpointurl):
     s = requests.request("GET", endpointurl)
@@ -8,8 +8,7 @@ def get_data_from_endpoint(endpointurl):
 
 
 def makeTransaction(values):
-    WEB3 = Web3(Web3.HTTPProvider(
-        ''))
+    WEB3 = Web3(Web3.HTTPProvider(ROPSTEN))
     nonce = WEB3.eth.getTransactionCount(ADDRESS)
     gasPrice = WEB3.eth.gasPrice
     value = WEB3.toWei(0, 'ether')

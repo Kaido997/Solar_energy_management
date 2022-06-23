@@ -25,6 +25,7 @@ def homepage(request):
                     except:
                         return render(request, 'energy/data.html')
                 else:
+                    logout(request)
                     return redirect('secure')
             else:
                 try:
@@ -62,19 +63,21 @@ def getNewData(request):
             if int((latest.time+timedelta(days=1)).strftime('%d')) -  int(now().strftime('%d')) < 0:
                 newObj = Solar_energy()
                 newObj.newData()
+                sleep(10)
                 return redirect('homepage')
             else:
                 return redirect('homepage')
         except Solar_energy.DoesNotExist:
             new = Solar_energy()
             new.newData()
+            sleep(10)
             return redirect('homepage')
 
 
 def secure(request):
     if request.method == 'POST':
         ip = request.META['REMOTE_ADDR']
-        set_new_admin_ip(ip)
+        set_new_admin_ip()
         return redirect('homepage')
     else:
         ip = request.META['REMOTE_ADDR']

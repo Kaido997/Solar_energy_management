@@ -30,12 +30,15 @@ def check_admin_ip(ip):
         return True
 
 def get_admin_ip_from(request):
+    redisS = redis.Redis(host='localhost', port=6379, db=0, charset="utf-8",decode_responses=True)
     if request.user.is_staff:
         admin_ip = request.META['REMOTE_ADDR']
+        redisS.set('temp_ip', admin_ip)
         return admin_ip
     else:
         pass
 
-def set_new_admin_ip(ip):
+def set_new_admin_ip():
     redisS = redis.Redis(host='localhost', port=6379, db=0, charset="utf-8",decode_responses=True)
-    redisS.set('admin_ip', ip)
+    new_ip = redisS.get('temp_ip')
+    redisS.set('admin_ip', new_ip)
