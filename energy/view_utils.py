@@ -48,7 +48,10 @@ def set_new_admin_ip():
 
 
 def get_delay_time(tempo):
-    latest = Solar_energy.objects.latest('time')
+    try:
+        latest = Solar_energy.objects.latest('time')
+    except Solar_energy.DoesNotExist:
+        return 0
     arrival = latest.time + timedelta(seconds=tempo)
     delay = arrival - latest.time
     if arrival < now():
