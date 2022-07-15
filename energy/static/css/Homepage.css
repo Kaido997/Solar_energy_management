@@ -1,8 +1,8 @@
 body{
-    background-color: #cafafe;
+    background-color: #e9e8e0;
 }
 
-.page-header {
+.page-header  {
     background-color:#fc4445;
     margin-top: 0;
     margin-bottom: 40px;
@@ -13,10 +13,11 @@ body{
 .page-header h1 a,
 .page-header h1 a:visited,
 .page-header h1 a:active {
-    color: #cafafe;
+    color: #000000;
     font-size: 35pt;
     text-decoration: none;
     height: 60px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 
@@ -28,47 +29,109 @@ body{
 }
 
 button {
-    background-color: #97caef;
-    color:#cafafe;
+    background-color: #000000;
+    color:#e9e8e0;
     margin: 8px 0;
     border: 1px solid;
 }
-  
+#main{
+  flex-wrap: wrap;
+}
 .bi,
 .bi-file-person{
     zoom: 2;
-    color:#cafafe;
+    color:#000000;
     top: 0.1em;
     right: 1em;
     position: absolute;
 }
+#logoutlink{
+    color: #000000;
+    top: 3.5em;
+    right: 1em;
+    position: absolute;
+    font-size: 15pt;
+    font-family: 'Ubuntu', sans-serif;
+}
 .name{
-    color:#cafafe;
-    font-size: small;
+    color:#000000;
+    font-size: medium;
     text-transform: uppercase;
     top: 2.5em;
     right: 2.5em;
     position: absolute;
-}
-.logoutlink{
-    color: #3feee6;
-    top: 2em;
-    right: 2em;
-    position: absolute;
+    font-family: 'Ubuntu', sans-serif;
 }
 #timer{
     color:#fc4445;
     font-weight: bold;
+    font-size: large;
+    font-family: 'Ubuntu', sans-serif;
 }
+
 
 .totals{
     text-align: center;
+    font-size: larger;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+table th , table td{
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+table tr:nth-child(even){
+    background-color: #e9e8e0;
+}
+
+th,
+.table-dark {
+  background: rgb(0, 0, 0);
+  color: #e9e8e0;
+}
+
+.pagination {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.pagination li:hover{
+    cursor: pointer;
+}
+
+.header_wrap {
+  padding:30px 0;
+}
+.num_rows {
+  width: 20%;
+  float:left;
+}
+.tb_search{
+  width: 20%;
+  float:right;
+}
+.pagination-container {
+  width: 70%;
+  float:left;
+}
+
+.rows_count {
+  width: 20%;
+  float:right;
+  text-align:right;
+  color: #999;
 }
 
 
+#myInput {
+  border : 2px solid #000;
+  font-size: 18px;
+  background-position: 10px 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-family: 'Ubuntu', sans-serif;
+}
 
-
-
-
-
-
+.infobox{
+  font-family: 'Ubuntu', sans-serif;
+}

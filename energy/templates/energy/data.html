@@ -1,5 +1,4 @@
 {% extends 'energy/homepage.html' %}
-
 {% block content %}
 {% load static %}
 {% if user.is_authenticated %}
@@ -16,9 +15,11 @@
     </div>
     {% endif %} 
 </div>
-<main class="content container">
-    <table class="table">
-        <thead>
+
+<div class="container">
+    <input type="text" id="myInput" class="rounded-pill shadow" onkeyup="searchfunction()" placeholder="Search for transaction" title="Type in a name">
+    <table id="myTable" class="table table-striped sampleTable shadow p-3 mb-5 bg-body rounded" style="width:100">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">DATE</th>
                 <th scope="col">PRODUCED ENERGY</th>
@@ -26,14 +27,52 @@
                 <th scope="col">TRANSACTION</th>
             </tr>
         </thead>
-    {% for i in data %}
-    <tr>
-        <td scope="row">{{ i.time }}</td>
-        <td>{{ i.produced }}</td>
-        <td>{{ i.consumed }}</td>
-        <td>{{ i.transactionID }}</td>
-    </tr>
-    {% endfor %}
-    {% endif %}
-    {% endblock %}
-</main>
+        {% for i in page_obj %}
+        <tr>
+            <td scope="row">{{ i.time }}</td>
+            <td>{{ i.produced }}</td>
+            <td>{{ i.consumed }}</td>
+            <td>{{ i.transactionID }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    <script>
+        function searchfunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+        </script>
+{% endif %}
+</div>
+{% endblock %}

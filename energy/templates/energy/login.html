@@ -6,9 +6,9 @@
         <form method="POST" class="login-post">
             <div>{% csrf_token %}
                 {{field.errors}}
-                <input type="text" placeholder="Enter Username" name="username" required>
-                <input type="password" placeholder="Enter Password" name="password" required>
-                <button type="submit">Login</button>
+                <input type="text" class="shadow rounded" placeholder="Enter Username" name="username" required>
+                <input type="password" class="shadow rounded" placeholder="Enter Password" name="password" required>
+                <button type="submit" class="shadow rounded">Login</button>
             </div>
         </form>
     </div>

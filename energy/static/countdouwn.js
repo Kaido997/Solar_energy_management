@@ -25,6 +25,5 @@ var x = setInterval(function () {
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("timer").innerHTML = "EXPIRED";
-    window.location.href = "/new";
   }
 }, 1000);

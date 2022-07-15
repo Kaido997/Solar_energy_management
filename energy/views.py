@@ -1,78 +1,58 @@
-from time import sleep
 from django.shortcuts import render, redirect
 from energy.models import Solar_energy
 from django.contrib.auth import authenticate, login, logout
-from energy.view_utils import get_total, check_admin_ip, get_admin_ip_from, set_new_admin_ip
-from datetime import timedelta
-from django.utils.timezone import now
+from django.core.paginator import Paginator
+from energy.view_utils import get_total, check_admin_ip, get_admin_ip_from, set_new_admin_ip, get_delay_time
+import threading
+
+def get_data():
+    newObj = Solar_energy()
+    return newObj.newData()
+    
 
 def homepage(request):
-    '''Homepage security and login logic'''
+    DELAY = get_delay_time(1200)
+    t = threading.Timer(DELAY, get_data)
+    t.start() 
+    if request.user.is_authenticated:
+        try:
+            data = Solar_energy.objects.order_by('-time')
+            latest = Solar_energy.objects.latest('time')
+            paginator = Paginator(data, 10)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            return render(request, 'energy/data.html', 
+            {'data': data, 'last_transaction': latest, 'total_produced': get_total('produced'), 'total_consumed': get_total('consumed'), 'page_obj': page_obj})
+        except:
+            return render(request, 'energy/data.html')
+    else:
+        return redirect("log_in")
+
+def log_out(request):
+    logout(request)
+    return redirect('log_in')
+
+def log_in(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            ip = get_admin_ip_from(request)
-            if ip:
-                if check_admin_ip(ip):
-                    try:
-                        data = Solar_energy.objects.order_by('-time')
-                        latest = Solar_energy.objects.latest('time')
-                        return render(request, 'energy/data.html', 
-                        {'data': data, 'last_transaction': latest, 'total_produced': get_total('produced'), 'total_consumed': get_total('consumed')})
-                    except:
-                        return render(request, 'energy/data.html')
+            if request.user.is_staff:
+                ip = get_admin_ip_from(request)
+                if ip:
+                    if check_admin_ip(ip):
+                        return redirect('homepage')
                 else:
                     logout(request)
-                    return redirect('secure')
+                return redirect('secure')
             else:
-                try:
-                    data = Solar_energy.objects.order_by('-time')
-                    latest = Solar_energy.objects.latest('time')
-                    return render(request, 'energy/data.html', 
-                    {'data': data, 'last_transaction': latest, 'total_produced': get_total('produced'), 'total_consumed': get_total('consumed')})
-                except:
-                    return render(request, 'energy/data.html')
+                return redirect('homepage')
         else:
-            return redirect('homepage')
+            redirect('log_in')
     else:
-        if request.user.is_authenticated:
-            try:
-                data = Solar_energy.objects.order_by('-time')
-                latest = Solar_energy.objects.latest('time')
-                return render(request, 'energy/data.html', 
-                {'data': data, 'last_transaction': latest, 'total_produced': get_total('produced'), 'total_consumed': get_total('consumed')})
-            except:
-                return render(request, 'energy/data.html')
-        else:
-            return render(request, 'energy/login.html')
-
-
-def log_out(request):
-    logout(request)
-    return redirect('homepage')
-
-
-def getNewData(request):
-    if request.user.is_authenticated:
-        try:
-            latest = Solar_energy.objects.latest('time')
-            sleep(5)
-            if int((latest.time+timedelta(days=1)).strftime('%d')) -  int(now().strftime('%d')) < 0:
-                newObj = Solar_energy()
-                newObj.newData()
-                sleep(10)
-                return redirect('homepage')
-            else:
-                return redirect('homepage')
-        except Solar_energy.DoesNotExist:
-            new = Solar_energy()
-            new.newData()
-            sleep(10)
-            return redirect('homepage')
-
+        return render(request, 'energy/login.html')
 
 def secure(request):
     if request.method == 'POST':
@@ -86,6 +66,5 @@ def secure(request):
         else:
             return render(request, 'energy/security.html')
         
-
 
 # Create your views here.

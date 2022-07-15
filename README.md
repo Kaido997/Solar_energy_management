@@ -1,6 +1,37 @@
 # Solar_energy_management
 
-REASON:
+Project presentation:
 
-The development of the project and the choice of the topic on which to develop the site created, started from the fact that in addition to being photovoltaic one of the methods of energy use for future, the use of the blockchain on this issue has always attracted in me a lot of curiosity.
-Precisely for this reason with the opportunity presented, i developed this project taking into consideration that a hotel or an eco-hotel that has installed a photovoltaic system through my web-app can easily control the consumption and the production it goes to support. I hope that in the future an eco-hotel with a photovoltaic system is not an exception or a surplus, not only for hotels, but that it is normal and that renewable energy such as photovoltaics is not the future but the present.
+The purpose of Solar_energy_management is to provide a simple interface to manage data from solar panels and integrate them with blockchain ad web3
+for, in the future, make the unused energy sellable to others in the net for a more greener world with sustainable cities.
+
+Technologies:
+
+-Django
+-Web3.py
+-Redis
+-Threading
+
+Isntallation:
+
+Install pakages with requirements.txt
+Make sure to insert your data in secret.py and you are ready to go...
+
+You can use the following pre-made users:
+
+Admin:
+Username = admin
+Password = adminpassword1
+
+User:
+Username = user
+Pssword = userpassword
+
+Functionality:
+
+-Data structured in a table with integrated search box, where you can search transaction on the page along with a pagination function for moving around the pages.
+
+-The site has been designed to work in autonomy thanks to a server side timer with the Threading library, where every 24H send a GET request to the endpoint to retrieve the data, make a Ethereum  ropsten transaction with the data as notes and finally store all the values in the database.
+
+-Login Security for the admin user in case of login from different IP made it superfast thanks to redis cache to store the IPs.
+

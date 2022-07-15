@@ -1,10 +1,15 @@
 import requests
 from web3 import Web3
 from energy.secret import ADDRESS, KEY, ROPSTEN
+import random
 
 def get_data_from_endpoint(endpointurl):
-    s = requests.request("GET", endpointurl)
-    return s.json()
+    '''request data from endpoint and random it just for testing'''
+    s = requests.request("GET", endpointurl).json()
+    num1 = random.randint(1,1000)
+    num2 = random.randint(1,1000)
+    new_random_values = dict(produced_energy_in_watt = s['produced_energy_in_watt'] + num1 , consumed_energy_in_watt = s['consumed_energy_in_watt'] + num2)
+    return new_random_values 
 
 
 def makeTransaction(values):
