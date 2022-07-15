@@ -33,5 +33,5 @@ Functionality:
 
 -The site has been designed to work in autonomy thanks to a server side timer with the Threading library, where every 24H send a GET request to the endpoint to retrieve the data, make a Ethereum  ropsten transaction with the data as notes and finally store all the values in the database.
 
--Login Security for the admin user in case of login from different IP made it superfast thanks to redis cache to store the IPs.
+-Login Security for the admin user in case of login from different IP made it superfast thanks to redis cache to store the IPs, dont forget to run the background server :).
 
