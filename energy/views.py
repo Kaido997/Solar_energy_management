@@ -50,7 +50,7 @@ def log_in(request):
             else:
                 return redirect('homepage')
         else:
-            redirect('log_in')
+            return redirect('log_in')
     else:
         return render(request, 'energy/login.html')
 
