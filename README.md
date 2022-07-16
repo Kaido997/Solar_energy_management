@@ -37,6 +37,8 @@ pip install -r requirements.txt
 
 - Login Security for the admin user in case of login from different IP made it superfast thanks to redis cache to store the IPs, dont forget to run the background server :).
 
+> How it looks:
+
 
 
 
