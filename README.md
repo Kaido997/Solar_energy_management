@@ -14,15 +14,18 @@ for, in the future, make the unused energy sellable to others in the net for a m
 
 ## Isntallation:
 
-Install pakages with requirements.txt
-Make sure to insert your data in secret.py and you are ready to go...
+> Install pakages with requirements.txt
+''' js
+pip install -r requirements.txt
+'''
+> Make sure to insert your data in secret.py and you are ready to go...
 
 ### You can use the following pre-made users:
-#### Admin:
+> Admin:
 - Username = admin
 - Password = adminpassword1
 
-#### User:
+> User:
 - Username = user
 - Pssword = userpassword
 
