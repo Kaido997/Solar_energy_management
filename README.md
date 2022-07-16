@@ -18,13 +18,13 @@ Install pakages with requirements.txt
 Make sure to insert your data in secret.py and you are ready to go...
 
 # You can use the following pre-made users:
-Admin:
-Username = admin
-Password = adminpassword1
+## Admin:
+- Username = admin
+- Password = adminpassword1
 
-User:
-Username = user
-Pssword = userpassword
+## User:
+- Username = user
+- Pssword = userpassword
 
 # Functionality:
 
