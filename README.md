@@ -1,16 +1,16 @@
 # Solar_energy_management
 
-Project presentation:
+ # Project presentation:
 
 The purpose of Solar_energy_management is to provide a simple interface to manage data from solar panels and integrate them with blockchain ad web3
 for, in the future, make the unused energy sellable to others in the net for a more greener world with sustainable cities.
 
-Technologies:
+# Technologies:
 
--Django
--Web3.py
--Redis
--Threading
+- Django
+- Web3.py
+- Redis
+- Threading
 
 Isntallation:
 
