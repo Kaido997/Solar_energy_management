@@ -1,7 +1,5 @@
 from energy.models import Solar_energy
 import redis
-from datetime import timedelta
-from django.utils.timezone import now
 
 
 def get_total(type):
@@ -45,16 +43,3 @@ def set_new_admin_ip():
     redisS = redis.Redis(host='localhost', port=6379, db=0, charset="utf-8",decode_responses=True)
     new_ip = redisS.get('temp_ip')
     redisS.set('admin_ip', new_ip)
-
-
-def get_delay_time(tempo):
-    try:
-        latest = Solar_energy.objects.latest('time')
-    except Solar_energy.DoesNotExist:
-        return 0
-    arrival = latest.time + timedelta(seconds=tempo)
-    delay = arrival - latest.time
-    if arrival < now():
-        return 0
-    elif delay.total_seconds() > 0:
-        return  int(delay.total_seconds())

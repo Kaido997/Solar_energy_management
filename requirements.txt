@@ -2,4 +2,4 @@ django
 web3
 requests
 redis
-threading
+django_crontab

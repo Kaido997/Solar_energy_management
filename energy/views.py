@@ -2,18 +2,11 @@ from django.shortcuts import render, redirect
 from energy.models import Solar_energy
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator
-from energy.view_utils import get_total, check_admin_ip, get_admin_ip_from, set_new_admin_ip, get_delay_time
-import threading
+from energy.view_utils import get_total, check_admin_ip, get_admin_ip_from, set_new_admin_ip
 
-def get_data():
-    newObj = Solar_energy()
-    return newObj.newData()
-    
 
 def homepage(request):
-    DELAY = get_delay_time(1200)
-    t = threading.Timer(DELAY, get_data)
-    t.start() 
+
     if request.user.is_authenticated:
         try:
             data = Solar_energy.objects.order_by('-time')
