@@ -34,6 +34,10 @@ For now only work in linux sistem :(
    ```js
    python manage.py crontab add
    ```
+ - I made a manage.py command to retrive data manually
+    ```js
+   python manage.py data_retriever
+   ```
  - Make sure to insert your data in secret.py and you are ready to go...
 
 ### You can visit the online website [Here](http://18.195.120.80:8000/):
