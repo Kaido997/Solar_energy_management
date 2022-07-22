@@ -5,6 +5,8 @@
 The purpose of Solar_energy_management is to provide a simple interface to manage data from solar panels and integrate them with blockchain ad web3
 for, in the future, make the unused energy sellable to others in the net for a more greener world with sustainable cities.
 
+[Canva presentation](https://www.canva.com/design/DAFHHsTn8L8/aVLqRqMF2Hv61A4Fd6ql6w/view?utm_content=DAFHHsTn8L8&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
+
 ## Technologies:
 
 - Django
