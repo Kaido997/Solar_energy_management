@@ -41,7 +41,10 @@ For now only work in linux sistem :(
    python manage.py data_retriever
    ```
  - Make sure to insert your data in secret.py and you are ready to go...
-
+ 
+ 
+ URL to my endpoint for retrieve data: "https://955cf8ae-5a74-4e4d-85d4-e8095a57862a.mock.pstmn.io"
+   
 ### You can visit the online website [Here](http://18.195.120.80:8000/):
 
 - I made some users that you can try out the website
