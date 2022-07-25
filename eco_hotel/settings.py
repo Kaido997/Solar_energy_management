@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'energy',
-    "django_crontab",
+    'django_crontab'
 ]
 
 MIDDLEWARE = [

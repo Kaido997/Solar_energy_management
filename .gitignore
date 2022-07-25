@@ -3,7 +3,7 @@
 *~
 __pycache__
 
-
+README.md
 # Env
 .env
 myvenv/
@@ -29,3 +29,4 @@ $RECYCLE.BIN/
 
 #redis
 dump.rdb
+
